@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { StyleSheet, Text, View, BackHandler } from 'react-native'
 
 import Header from '../components/Header'
 
@@ -15,9 +15,21 @@ const Detail = () => {
         setStatus(!status)
     }
 
+    // useEffect(() => {
+    //     BackHandler.addEventListener('hardwareBackPress', setStatus(false))
+    //     return () => {
+    //         BackHandler.removeEventListener('hardwareBackPress')
+    //     }
+    // },[])
+
     return (
-        <View style={styles.container}>
-            <View style={styles.content}>
+        <View style={[styles.container, {
+            backgroundColor: status ? 'black' : '#1a2e66',
+
+        }]}>
+            <View style={[styles.content, {
+                backgroundColor: status ? 'black' : 'white',
+            }]}>
                 <Header
                     left={'chevron-left'}
                     right={'circle-with-plus'}
@@ -120,14 +132,12 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        backgroundColor: '#1a2e66'
     },
     content: {
         flex: 1,
         marginTop: 50,
         borderTopLeftRadius: 50,
         borderTopRightRadius: 50,
-        backgroundColor: 'white'
     },
     navContainer: {
         flex: 1 / 15,
