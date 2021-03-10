@@ -67,7 +67,7 @@ const BottomTabs = () => {
         >
 
             <Tab.Screen name="Deck" component={Deck} />
-            <Tab.Screen name="Detail" component={Detail} />
+            <Tab.Screen name="Detail" component={Detail} options={{tabBarVisible: false}}/>
             {/* <Tab.Screen name="Scan" component={Scan} /> */}
             {/* <Tab.Screen name="Calender" component={Calender} /> */}
 

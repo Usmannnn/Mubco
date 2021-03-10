@@ -3,14 +3,14 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import { Entypo, FontAwesome } from 'react-native-vector-icons'
 
-const Header = ({ left, right }) => {
+const Header = ({ left, right, color }) => {
     return (
         <View style={styles.container}>
             <TouchableOpacity>
-                <FontAwesome name={left} size={20} color={'white'} />
+                <FontAwesome name={left} size={25} color={color} />
             </TouchableOpacity>
             <TouchableOpacity>
-                <Entypo name={right} size={20} color={'white'} />
+                <Entypo name={right} size={25} color={color} />
             </TouchableOpacity>
         </View>
     )
@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         flexDirection: 'row',
-        backgroundColor: '#1a2e66',
         paddingHorizontal: 25
     }
 })
