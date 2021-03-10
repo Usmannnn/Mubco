@@ -1,12 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
 import Header from '../components/Header'
 
 import { Entypo, FontAwesome } from 'react-native-vector-icons'
+import Modal from '../components/Modal'
 
 
 const Detail = () => {
+
+    const [status, setStatus] = useState(false)
+
+    const modalUp = () => {
+        setStatus(!status)
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.content}>
@@ -14,6 +22,7 @@ const Detail = () => {
                     left={'chevron-left'}
                     right={'circle-with-plus'}
                     color={'#1a2e66'}
+                    action={modalUp}
                 />
                 <View style={styles.navContainer}>
                     <Text style={{ fontWeight: 'bold', fontSize: 20, color: '#1a2e66' }}>My Cards</Text>
@@ -101,6 +110,8 @@ const Detail = () => {
                     </View>
                 </View>
             </View>
+
+            <Modal status={status} />
         </View>
     )
 }

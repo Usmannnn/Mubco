@@ -3,13 +3,15 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 
 import { Entypo, FontAwesome } from 'react-native-vector-icons'
 
-const Header = ({ left, right, color }) => {
+const Header = ({ left, right, color, action }) => {
     return (
         <View style={styles.container}>
             <TouchableOpacity>
                 <FontAwesome name={left} size={25} color={color} />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => action()}
+            >
                 <Entypo name={right} size={25} color={color} />
             </TouchableOpacity>
         </View>

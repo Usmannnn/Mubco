@@ -1,10 +1,33 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react'
 import { StyleSheet, Text, View, Animated } from 'react-native'
 
-const Modal = () => {
+const Modal = ({status}) => {
+
+    const position = useRef(new Animated.Value(0)).current
+
+    useEffect(() => {
+
+        console.log(status)
+        if (status) {
+            Animated.spring(position, {
+                toValue: 600,
+                // duration: 100,
+                useNativeDriver: false
+            }).start()
+        } else {
+            Animated.spring(position, {
+                toValue: 0,
+                // duration: 100,
+                useNativeDriver: false
+            }).start()
+        }
+    },[status])
+
     return (
         <Animated.View
-            style={[styles.container]}
+            style={[styles.container, {
+                height: position
+            }]}
         >
             <Text></Text>
         </Animated.View>
@@ -14,12 +37,14 @@ const Modal = () => {
 const styles = StyleSheet.create({
 
     container: {
-        height: 500,
         backgroundColor: 'red',
         position: 'absolute',
-        bottom: 0,
+        bottom: -50,
         left: 0,
-        right: 0
+        right: 0,
+        marginHorizontal:5,
+        borderTopLeftRadius: 50,
+        borderTopRightRadius: 50
     }
 })
 
