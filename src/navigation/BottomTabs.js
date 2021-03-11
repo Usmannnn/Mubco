@@ -3,11 +3,11 @@ import { View } from 'react-native';
 
 
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { AntDesign, Ionicons } from 'react-native-vector-icons';
+import { AntDesign, Ionicons, MaterialCommunityIcons } from 'react-native-vector-icons';
 
 import Deck from '../screen/Deck';
 import Detail from '../screen/Detail';
-// import Scan from '../screen/Scan';
+import Scanner from '../screen/Scanner';
 // import Calender from '../screen/Calender';
 
 
@@ -42,6 +42,15 @@ const BottomTabs = () => {
                             </View>
                         )
                     }
+
+                    else if (route.name === 'Scanner') {
+
+                        return (
+                            <View style={{ justifyContent: 'center', alignItems: 'center', backgroundColor: focused ? '#1a2e66' : '#d9d9d9', width: 50, height: 50, borderRadius: 30 }}>
+                                <MaterialCommunityIcons name={'qrcode-scan'} size={size} color={focused ? '#d9d9d9' : '#1a2e66'} />
+                            </View>
+                        )
+                    }
                 }
 
             })}
@@ -67,8 +76,8 @@ const BottomTabs = () => {
         >
 
             <Tab.Screen name="Deck" component={Deck} />
-            <Tab.Screen name="Detail" component={Detail} options={{tabBarVisible: false}}/>
-            {/* <Tab.Screen name="Scan" component={Scan} /> */}
+            <Tab.Screen name="Detail" component={Detail} options={{ tabBarVisible: false }} />
+            <Tab.Screen name="Scanner" component={Scanner} />
             {/* <Tab.Screen name="Calender" component={Calender} /> */}
 
         </Tab.Navigator>

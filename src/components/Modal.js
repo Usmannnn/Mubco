@@ -7,18 +7,20 @@ const Modal = ({ status }) => {
 
     useEffect(() => {
 
-        console.log(status)
         if (status) {
-            Animated.spring(position, {
+            Animated.timing(position, {
                 toValue: 650,
+                duration: 200,
                 useNativeDriver: false
             }).start()
         } else {
-            Animated.spring(position, {
+            Animated.timing(position, {
                 toValue: 0,
+                duration: 200,
                 useNativeDriver: false
             }).start()
         }
+        
     }, [status])
 
     return (
@@ -40,6 +42,7 @@ const Modal = ({ status }) => {
                 }}
                 showsVerticalScrollIndicator={false}
             >
+                {/* dış componentler çağırılıp map edilebilir */}
                 <View style={styles.items}>
                     <Image
                         source={require('../../assets/1.jpg')}
