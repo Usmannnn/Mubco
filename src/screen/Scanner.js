@@ -10,6 +10,21 @@ const Scanner = () => {
 
     useEffect(() => { askPermission() }, []);
 
+    if (hasPermission === null) {
+        return (
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <Text>Requesting for camera permission</Text>
+            </View>
+        )
+    }
+    if (hasPermission === false) {
+        return (
+            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+                <Text>No access to camera</Text>;
+            </View>
+        )
+    }
+
     const askPermission = async () => {
         const { status } = await BarCodeScanner.requestPermissionsAsync();
         setHasPermission(status === 'granted');
@@ -20,18 +35,11 @@ const Scanner = () => {
         alert(data);
     };
 
-    if (hasPermission === null) {
-        return <Text>Requesting for camera permission</Text>;
-    }
-    if (hasPermission === false) {
-        return <Text>No access to camera</Text>;
-    }
-
     return (
         <View style={styles.container}>
             <BarCodeScanner
                 onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-                style={styles.barCodeView}
+                style={StyleSheet.absoluteFillObject}
             />
             {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
         </View>
@@ -44,13 +52,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#fff',
-    },
-    barCodeView: {
-        width: '100%',
-        height: '50%',
-        marginBottom: 40,
-        borderWidth: 2,
-        borderColor: 'red'
     },
 });
 

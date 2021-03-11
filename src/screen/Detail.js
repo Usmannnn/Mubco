@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, BackHandler } from 'react-native'
+import { StyleSheet, Text, View, BackHandler, TouchableOpacity } from 'react-native'
 
 import Header from '../components/Header'
 
-import { Entypo, FontAwesome } from 'react-native-vector-icons'
+import { Entypo } from 'react-native-vector-icons'
 import Modal from '../components/Modal'
-
+import Transactions from '../components/Transactions'
+import Calendar from '../screen/Calender'
 
 const Detail = () => {
 
     const [status, setStatus] = useState(false)
+    const [whichModal, setModal] = useState(true)
 
-    const modalUp = () => {
+
+    const transaction = () => {
         setStatus(!status)
     }
 
@@ -34,7 +37,7 @@ const Detail = () => {
                     left={'chevron-left'}
                     right={'circle-with-plus'}
                     color={'#1a2e66'}
-                    action={modalUp}
+                    action={transaction}
                 />
                 <View style={styles.navContainer}>
                     <Text style={{ fontWeight: 'bold', fontSize: 20, color: '#1a2e66' }}>My Cards</Text>
@@ -71,7 +74,10 @@ const Detail = () => {
                     <View style={styles.detail}>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 15 }}>
                             <Text style={{ fontWeight: 'bold' }}>Shopping</Text>
-                            <Entypo name={'dots-two-vertical'} size={20} color={'black'} />
+                            <TouchableOpacity
+                            >
+                                <Entypo name={'dots-two-vertical'} size={20} color={'black'} />
+                            </TouchableOpacity>
                         </View>
                         <View style={{ flexDirection: 'row', justifyContent: 'space-evenly' }}>
                             <View>
@@ -123,7 +129,9 @@ const Detail = () => {
                 </View>
             </View>
 
-            <Modal status={status} />
+            <Modal status={status} >
+                 <Calendar />
+            </Modal>
         </View>
     )
 }

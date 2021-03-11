@@ -1,16 +1,22 @@
 import React from 'react'
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { StyleSheet, TouchableOpacity, View } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
 import { Entypo, FontAwesome } from 'react-native-vector-icons'
 
 const Header = ({ left, right, color, action }) => {
+
+    const navigation = useNavigation()
+
     return (
         <View style={styles.container}>
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => action && navigation.goBack()}
+            >
                 <FontAwesome name={left} size={25} color={color} />
             </TouchableOpacity>
             <TouchableOpacity
-                onPress={() => action()}
+                onPress={() => action && action()}
             >
                 <Entypo name={right} size={25} color={color} />
             </TouchableOpacity>

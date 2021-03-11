@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, View, Image } from 'react-native'
 
 
@@ -6,7 +6,6 @@ import Header from '../components/Header'
 import Loan from '../components/Loan'
 import Request from '../components/Request'
 import Topup from '../components/Topup'
-import Modal from '../components/Modal'
 
 
 const Deck = () => {
