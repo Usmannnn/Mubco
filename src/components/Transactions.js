@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image } from 'rea
 const Transactions = () => {
     return (
         <>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 50, marginHorizontal: 20 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 30, marginHorizontal: 20 }}>
                 <Text style={{ fontWeight: 'bold', fontSize: 24 }}>Transactions</Text>
                 <Text>July, 2020</Text>
             </View>

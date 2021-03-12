@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from 'react'
 import { StyleSheet, Text, View, Animated, ScrollView, Image, TouchableOpacity } from 'react-native'
 
-const Modal = ({ status, children }) => {
+const Modal = ({ status, children, setStatus }) => {
 
     const position = useRef(new Animated.Value(0)).current
 
@@ -20,7 +20,7 @@ const Modal = ({ status, children }) => {
                 useNativeDriver: false
             }).start()
         }
-        
+
     }, [status])
 
     return (
@@ -29,6 +29,14 @@ const Modal = ({ status, children }) => {
                 height: position
             }]}
         >
+            <TouchableOpacity
+                onPress={() => setStatus(!status)}
+                style={styles.grabber}
+            >
+                <View style={{height: 3, width: '100%', backgroundColor: 'black', marginBottom: 2}} />
+                <View style={{height: 3, width: '75%', backgroundColor: 'black', marginBottom: 2}} />
+                <View style={{height: 3, width: '50%', backgroundColor: 'black'}} />
+            </TouchableOpacity>
             {children}
         </Animated.View>
     )
@@ -46,7 +54,13 @@ const styles = StyleSheet.create({
         borderTopLeftRadius: 50,
         borderTopRightRadius: 50
     },
-    
+    grabber: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 20,
+        width: '20%',
+        alignSelf: 'center'
+    }
 })
 
 

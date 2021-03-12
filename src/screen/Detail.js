@@ -18,12 +18,6 @@ const Detail = () => {
         setStatus(!status)
     }
 
-    // useEffect(() => {
-    //     BackHandler.addEventListener('hardwareBackPress', setStatus(false))
-    //     return () => {
-    //         BackHandler.removeEventListener('hardwareBackPress')
-    //     }
-    // },[])
 
     return (
         <View style={[styles.container, {
@@ -129,8 +123,8 @@ const Detail = () => {
                 </View>
             </View>
 
-            <Modal status={status} >
-                 <Calendar />
+            <Modal status={status} setStatus={setStatus} >
+                 <Transactions/>
             </Modal>
         </View>
     )
