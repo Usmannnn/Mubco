@@ -6,7 +6,6 @@ import Header from '../components/Header'
 import { Entypo } from 'react-native-vector-icons'
 import Modal from '../components/Modal'
 import Transactions from '../components/Transactions'
-import Calendar from '../screen/Calender'
 
 const Detail = () => {
 

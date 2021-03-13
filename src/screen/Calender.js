@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { StyleSheet, Text, View, Dimensions, Animated, Keyboard, BackHandler, TextInput, TouchableOpacity, ScrollView, PanResponder } from 'react-native'
 
 import { CalendarList } from 'react-native-calendars';
+import { Entypo } from 'react-native-vector-icons'
 
 
 const { width, height } = Dimensions.get('screen')
@@ -14,7 +15,7 @@ const Calender = () => {
     const [popup, setPopup] = useState(false)
 
     const position = useRef(new Animated.Value(height)).current
-    const swipe = useRef(new Animated.Value(0)).current
+    const swipe = useRef(new Animated.Value(20)).current
 
 
     useEffect(() => {
@@ -58,18 +59,10 @@ const Calender = () => {
         Keyboard.dismiss()
     }
 
-    const panResponder = PanResponder.create({
-        onStartShouldSetPanResponder: () => true,
-        onPanResponderMove: (event, gesture) => handleSwipe(gesture.dx)
-    })
-
-    const handleSwipe = (moveX) => {
-
-        if (moveX > 0) {
-            console.log('sağ', moveX)
-        } else {
-            console.log('sol')
-        }
+    const handleRemove = (eventName) => {
+        
+        const result = event.filter(event => eventName !== event[0]);
+        setEvent(result)
     }
 
     return (
@@ -97,12 +90,18 @@ const Calender = () => {
                                     return (
                                         <Animated.View
                                             key={index}
-                                            {...panResponder.panHandlers}
-                                            style={[styles.content, {
-                                            }]}
+                                            style={styles.content}
                                         >
                                             <Text style={styles.text}>{item[0]}</Text>
-                                            <Text style={styles.text}>{item[1]}</Text>
+                                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                                <Text style={styles.text}>{item[1]}</Text>
+                                                <TouchableOpacity
+                                                    style={{marginLeft: 10}}
+                                                    onPress={() => handleRemove(item[0])}
+                                                >
+                                                    <Entypo name={'cross'} size={25} color={'white'} />
+                                                </TouchableOpacity>
+                                            </View>
                                         </Animated.View>
                                     )
                                 })
@@ -127,20 +126,20 @@ const Calender = () => {
                 <View
                     style={styles.eventInput}
                 >
-                    <Text style={[styles.text, { color: 'black'}]}>{date}</Text>
+                    <Text style={[styles.text, { color: 'black' }]}>{date}</Text>
                 </View>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                     <TouchableOpacity
                         style={styles.eventInput}
                         onPress={() => setPopup(false)}
                     >
-                        <Text style={[styles.text, { color: 'black'}]}>İPTAL ET</Text>
+                        <Text style={[styles.text, { color: 'black' }]}>İPTAL ET</Text>
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.eventInput}
                         onPress={() => handleConfirm()}
                     >
-                        <Text style={[styles.text, { color: 'black'}]}>ONAYLA</Text>
+                        <Text style={[styles.text, { color: 'black' }]}>ONAYLA</Text>
                     </TouchableOpacity>
                 </View>
             </Animated.View>
@@ -165,7 +164,7 @@ const styles = StyleSheet.create({
     popup: {
         height: height / 3,
         marginHorizontal: width / 10,
-        backgroundColor: '#cc2112',
+        backgroundColor: '#1a2e66',
         opacity: 0.8,
         position: 'absolute',
         left: 10,
@@ -175,13 +174,13 @@ const styles = StyleSheet.create({
         paddingVertical: 30,
         paddingHorizontal: 20,
         borderWidth: 2,
-        borderColor: '#1a2e66'
+        borderColor: '#d9d9d9'
     },
     eventInput: {
         height: 50,
         borderRadius: 50,
         backgroundColor: 'white',
-        paddingHorizontal: 30,
+        paddingHorizontal: 27,
         justifyContent: 'center',
         borderWidth: 2,
         borderColor: '#1a2e66'
