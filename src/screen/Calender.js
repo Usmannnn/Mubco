@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { StyleSheet, Text, View, Dimensions, Animated, Keyboard, BackHandler, TextInput, TouchableOpacity, ScrollView } from 'react-native'
+import { StyleSheet, Text, View, Dimensions, Animated, Keyboard, BackHandler, TextInput, TouchableOpacity, ScrollView, PanResponder } from 'react-native'
 
 import { CalendarList } from 'react-native-calendars';
 
@@ -13,8 +13,8 @@ const Calender = () => {
     const [date, setDate] = useState(null)
     const [popup, setPopup] = useState(false)
 
-
     const position = useRef(new Animated.Value(height)).current
+    const swipe = useRef(new Animated.Value(0)).current
 
 
     useEffect(() => {
@@ -58,6 +58,20 @@ const Calender = () => {
         Keyboard.dismiss()
     }
 
+    const panResponder = PanResponder.create({
+        onStartShouldSetPanResponder: () => true,
+        onPanResponderMove: (event, gesture) => handleSwipe(gesture.dx)
+    })
+
+    const handleSwipe = (moveX) => {
+
+        if (moveX > 0) {
+            console.log('sağ', moveX)
+        } else {
+            console.log('sol')
+        }
+    }
+
     return (
         <>
             <CalendarList
@@ -65,12 +79,11 @@ const Calender = () => {
                 pagingEnabled={true}
                 calendarWidth={width}
                 onDayLongPress={(day) => handleLongPress(day.dateString)}
-
             />
             {
                 event.length == 0 ?
                     <View style={styles.content}>
-                    <Text style={styles.text}>Burada Hiç Etkinlik Yok</Text>
+                        <Text style={styles.text}>Burada Hiç Etkinlik Yok</Text>
                     </View>
                     :
                     <>
@@ -82,13 +95,15 @@ const Calender = () => {
                                 event.map((item, index) => {
                                     console.log(item)
                                     return (
-                                        <View
-                                            style={styles.content}
+                                        <Animated.View
                                             key={index}
+                                            {...panResponder.panHandlers}
+                                            style={[styles.content, {
+                                            }]}
                                         >
                                             <Text style={styles.text}>{item[0]}</Text>
                                             <Text style={styles.text}>{item[1]}</Text>
-                                        </View>
+                                        </Animated.View>
                                     )
                                 })
                             }
