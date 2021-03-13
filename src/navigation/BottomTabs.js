@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { View } from 'react-native';
 
-
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { AntDesign, Ionicons, MaterialCommunityIcons } from 'react-native-vector-icons';
 
@@ -10,11 +9,9 @@ import Detail from '../screen/Detail';
 import Scanner from '../screen/Scanner';
 import Calender from '../screen/Calender';
 
-
 const Tab = createBottomTabNavigator();
 
 const BottomTabs = () => {
-
 
     return (
         <Tab.Navigator

@@ -18,6 +18,7 @@ const Transactions = () => {
                 showsVerticalScrollIndicator={false}
             >
                 {/* dış componentler çağırılıp map edilebilir */}
+                
                 <View style={styles.items}>
                     <Image
                         source={require('../../assets/1.jpg')}
@@ -32,6 +33,22 @@ const Transactions = () => {
                         <Text>July 20</Text>
                     </View>
                 </View>
+
+                <View style={styles.items}>
+                    <Image
+                        source={require('../../assets/1.jpg')}
+                        style={{ height: 100, width: 100, marginLeft: -15, borderRadius: 25 }}
+                        resizeMode={'contain'}
+                    />
+                    <View style={{ marginLeft: -50 }}>
+                        <Text style={{ marginBottom: 20, fontWeight: 'bold', fontSize: 20 }}>$865</Text>
+                        <Text>Received from Alana</Text>
+                    </View>
+                    <View style={{ alignSelf: 'flex-end', marginBottom: 10, marginRight: 15 }}>
+                        <Text>July 20</Text>
+                    </View>
+                </View>
+
             </ScrollView>
             <TouchableOpacity style={styles.button}>
                 <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 20 }}>See  All Transactions</Text>

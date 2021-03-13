@@ -1,9 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { StyleSheet, Text, View, Dimensions, Animated, Keyboard, BackHandler, TextInput, TouchableOpacity, ScrollView, PanResponder } from 'react-native'
+import {
+    StyleSheet,
+    Text,
+    View,
+    Dimensions,
+    Animated,
+    Keyboard,
+    BackHandler,
+    TextInput,
+    TouchableOpacity,
+    ScrollView,
+    PanResponder
+} from 'react-native'
 
 import { CalendarList } from 'react-native-calendars';
 import { Entypo } from 'react-native-vector-icons'
-
 
 const { width, height } = Dimensions.get('screen')
 
@@ -15,8 +26,6 @@ const Calender = () => {
     const [popup, setPopup] = useState(false)
 
     const position = useRef(new Animated.Value(height)).current
-    const swipe = useRef(new Animated.Value(20)).current
-
 
     useEffect(() => {
 
@@ -54,13 +63,15 @@ const Calender = () => {
             eventName,
             date
         ]])
+
         setEventName(null)
         setPopup(false)
+
         Keyboard.dismiss()
     }
 
     const handleRemove = (eventName) => {
-        
+
         const result = event.filter(event => eventName !== event[0]);
         setEvent(result)
     }
@@ -86,17 +97,17 @@ const Calender = () => {
                         >
                             {
                                 event.map((item, index) => {
-                                    console.log(item)
+
                                     return (
                                         <Animated.View
                                             key={index}
                                             style={styles.content}
                                         >
                                             <Text style={styles.text}>{item[0]}</Text>
-                                            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                                            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                                 <Text style={styles.text}>{item[1]}</Text>
                                                 <TouchableOpacity
-                                                    style={{marginLeft: 10}}
+                                                    style={{ marginLeft: 10 }}
                                                     onPress={() => handleRemove(item[0])}
                                                 >
                                                     <Entypo name={'cross'} size={25} color={'white'} />

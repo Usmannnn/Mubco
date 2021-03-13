@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { StyleSheet, Text, View, BackHandler, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 
 import Header from '../components/Header'
 
@@ -10,13 +10,10 @@ import Transactions from '../components/Transactions'
 const Detail = () => {
 
     const [status, setStatus] = useState(false)
-    const [whichModal, setModal] = useState(true)
-
 
     const transaction = () => {
         setStatus(!status)
     }
-
 
     return (
         <View style={[styles.container, {

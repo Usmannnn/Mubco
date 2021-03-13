@@ -4,7 +4,6 @@ import { StyleSheet, Text, View } from 'react-native'
 
 import { MaterialCommunityIcons } from 'react-native-vector-icons'
 
-
 const Loan = () => {
     return (
         <View style={styles.container}>

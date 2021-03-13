@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from 'react'
-import { StyleSheet, Text, View, Animated, ScrollView, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Animated, TouchableOpacity } from 'react-native'
 
 const Modal = ({ status, children, setStatus }) => {
 
