@@ -17,7 +17,7 @@ const Transactions = () => {
                 }}
                 showsVerticalScrollIndicator={false}
             >
-                {/* dış componentler çağırılıp map edilebilir */}
+                {/* dış componentler çağırılıp map edilebilir Tesy5*/}
                 
                 <View style={styles.items}>
                     <Image
